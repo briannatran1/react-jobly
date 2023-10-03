@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import JoblyApi from './api';
 
 /** CompanyDetail
  *
@@ -9,7 +10,7 @@ import { useParams } from 'react-router-dom';
  */
 
 function CompanyDetail() {
-  return <h1>I AM COMPANY DETAIL</h1>
+  return <h1>I AM COMPANY DETAIL</h1>;
 }
 
 export default CompanyDetail;

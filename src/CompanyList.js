@@ -1,5 +1,7 @@
 import JoblyApi from "./api";
 import { useState, useEffect } from 'react';
+import SearchForm from "./SearchForm";
+import CompanyCard from "./CompanyCard";
 
 /** CompanyList:
  *
@@ -10,7 +12,30 @@ import { useState, useEffect } from 'react';
 */
 
 function CompanyList() {
-return <h1>I AM COMPANY LIST</h1>
+  const [companies, setCompanies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(function fetchCompaniesWhenMounted() {
+    async function fetchCompanies() {
+      setCompanies(await JoblyApi.getCompanies());
+    }
+    fetchCompanies();
+  }, []);
+
+  /** updating searchTerm state */
+  function setSearch(newSearchTerm) {
+    setSearchTerm(newSearchTerm);
+  }
+
+  return (
+    <>
+      <SearchForm setSearch={setSearch} />
+
+      {companies.map(company => (
+        <CompanyCard key={company.handle} company={company} />
+      ))}
+    </>
+  );
 }
 
 export default CompanyList;

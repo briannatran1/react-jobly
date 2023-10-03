@@ -45,7 +45,7 @@ class JoblyApi {
   }
 
   // Individual API routes
-  //FIXME: test these
+
   /** Get details on a company by handle. Returns {company} */
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
@@ -64,3 +64,5 @@ class JoblyApi {
     return res.jobs;
   }
 }
+
+export default JoblyApi;
