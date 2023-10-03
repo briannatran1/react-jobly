@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
  */
 
 function CompanyDetail() {
-
+  return <h1>I AM COMPANY DETAIL</h1>
 }
 
 export default CompanyDetail;

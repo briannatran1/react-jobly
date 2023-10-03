@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 */
 
 function CompanyList() {
-
+return <h1>I AM COMPANY LIST</h1>
 }
 
 export default CompanyList;
