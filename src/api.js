@@ -1,4 +1,5 @@
 import axios from "axios";
+import Job from "../../express-jobly-solution 2/models/job";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
@@ -24,8 +25,8 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -45,5 +46,24 @@ class JoblyApi {
     return res.company;
   }
 
-  // obviously, you'll add a lot here ...
+  /** Get all companies */
+  static async getCompanies() {
+    let res = await this.request(`companies`);
+    return res;
+  }
+
+  /** Get all jobs */
+  static async getJobs() {
+    let res = await this.request(`jobs`);
+    return res;
+  }
+
+  /** Get details on a jobs by handle. */
+
+  static async getCompany(handle) {
+    let res = await this.request(`companies/${handle}`);
+    return res.company;
+  }
 }
+
+export default JoblyApi;
