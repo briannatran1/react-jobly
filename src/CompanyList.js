@@ -28,6 +28,8 @@ function CompanyList() {
     console.log("searchTerm inside companylist", searchTerm);
   }
 
+
+
   return (
     <>
       <SearchForm setSearch={setSearch} />

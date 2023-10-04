@@ -40,7 +40,7 @@ function SearchForm({ setSearch }) {
         </input>
         <button
           className="btn btn-primary"
-          disabled={!formData.nameLike}>Submit</button>
+        >Submit</button>
       </div>
     </form>
   );
