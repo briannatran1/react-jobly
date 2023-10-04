@@ -27,35 +27,23 @@ function JobList() {
     fetchJobs();
   }, [searchTerm]);
 
-  //make api call in here?
-  //TODO: change fn name
-
   /** updating searchTerm state */
-  function setSearch(newSearchTerm) {
+  function updateSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
   }
 
-  //TODO: use div instead of fragments to utilize styles
-
-  // if (isLoading) {
-  //   return <h1>Loading...</h1>;
-  // }
-  // return jobcardlist
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
-    <>
-      {isLoading
-        ? <h1>Loading...</h1>
-        :
-        <>
-          <SearchForm setSearch={setSearch} />
-          {jobs.length === 0 &&
-            <h5 className="mt-4">Sorry, no results were found!</h5>}
+    <div className="JobList">
+      <SearchForm updateSearch={updateSearch} />
+      {jobs.length === 0 &&
+        <h5 className="mt-4">Sorry, no results were found!</h5>}
 
-          <JobCardList jobs={jobs} />
-        </>
-      }
-    </>
+      <JobCardList jobs={jobs} />
+    </div>
   );
 }
 

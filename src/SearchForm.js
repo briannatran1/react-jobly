@@ -3,7 +3,7 @@ import { useState } from 'react';
 /** SearchForm: search form for jobs and companies to filter
  *
  * State:
- * - formData like {}
+ * - formData like ""
  *
  * Props:
  * - setSearch(): fn to set state in parent
@@ -11,13 +11,12 @@ import { useState } from 'react';
  * {CompanyList, JobList} -> SearchForm
  */
 
-function SearchForm({ setSearch }) {
+function SearchForm({ updateSearch }) {
   const [formData, setFormData] = useState('');
 
-  //TODO: change setSearch fn name
   function handleSubmit(evt) {
     evt.preventDefault();
-    setSearch(formData);
+    updateSearch(formData);
   }
 
   function handleChange(evt) {
@@ -25,11 +24,11 @@ function SearchForm({ setSearch }) {
     setFormData(value);
   }
 
-  //TODO: add aria-label
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
       <div className='input-group'>
         <input
+          aria-label="search"
           className='form-control form-control-sm'
           id="search"
           name="search"

@@ -27,28 +27,25 @@ function CompanyList() {
     fetchCompanies();
   }, [searchTerm]);
 
-  //TODO: change name
   /** updating searchTerm state */
-  function setSearch(newSearchTerm) {
+  function updateSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
   }
 
-  return (
-    <>
-      {isLoading === true
-        ? <h1>Loading...</h1>
-        :
-        <>
-          <SearchForm setSearch={setSearch} />
-          {companies.length === 0 &&
-            <h5 className="mt-4">Sorry, no results were found!</h5>}
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
-          {companies.map(company => (
-            <CompanyCard key={company.handle} company={company} />
-          ))}
-        </>
-      }
-    </>
+  return (
+    <div className="CompanyList">
+      <SearchForm updateSearch={updateSearch} />
+      {companies.length === 0 &&
+        <h5 className="mt-4">Sorry, no results were found!</h5>}
+
+      {companies.map(company => (
+        <CompanyCard key={company.handle} company={company} />
+      ))}
+    </div>
   );
 }
 

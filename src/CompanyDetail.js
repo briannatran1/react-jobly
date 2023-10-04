@@ -3,6 +3,9 @@ import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 
+//IN THE FUTURE: notFound rename to errors and set as empty arr
+// display errors in arr
+
 /** CompanyDetail: renders details about a company
  *
  * State:
@@ -13,8 +16,6 @@ import JobCardList from './JobCardList';
 
 function CompanyDetail() {
   const [company, setCompany] = useState({});
-  //TODO: notFound rename to errors and set as empty arr
-  // display errors in arr
   const [notFound, setNotFound] = useState(false);
 
   const params = useParams();
@@ -22,10 +23,9 @@ function CompanyDetail() {
   useEffect(function fetchCompanyWhenMounted() {
     async function fetchCompany() {
       try {
-        //TODO: await first as a var then set
-        setCompany(await JoblyApi.getCompany(params.handle));
+        const companyData = await JoblyApi.getCompany(params.handle);
+        setCompany(companyData);
       }
-      //FIXME: use errors in api
       catch {
         setNotFound(true);
       }
@@ -35,7 +35,7 @@ function CompanyDetail() {
 
   return (
     <>
-      {notFound === true && <Navigate to="/" />}
+      {notFound === true && <h1>Company Not Found</h1>}
 
       {Object.keys(company).length === 0
         ? <h1>Loading...</h1>
