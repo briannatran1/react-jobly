@@ -13,6 +13,8 @@ import JobCardList from './JobCardList';
 
 function CompanyDetail() {
   const [company, setCompany] = useState({});
+  //TODO: notFound rename to errors and set as empty arr
+  // display errors in arr
   const [notFound, setNotFound] = useState(false);
 
   const params = useParams();
@@ -20,8 +22,10 @@ function CompanyDetail() {
   useEffect(function fetchCompanyWhenMounted() {
     async function fetchCompany() {
       try {
+        //TODO: await first as a var then set
         setCompany(await JoblyApi.getCompany(params.handle));
       }
+      //FIXME: use errors in api
       catch {
         setNotFound(true);
       }

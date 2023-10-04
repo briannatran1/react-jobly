@@ -17,6 +17,7 @@ function JobList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  // don't need to useEffect to make API call
   useEffect(function fetchJobsWhenMounted() {
     async function fetchJobs() {
       setIsLoading(true);
@@ -26,14 +27,24 @@ function JobList() {
     fetchJobs();
   }, [searchTerm]);
 
+  //make api call in here?
+  //TODO: change fn name
+
   /** updating searchTerm state */
   function setSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
   }
 
+  //TODO: use div instead of fragments to utilize styles
+
+  // if (isLoading) {
+  //   return <h1>Loading...</h1>;
+  // }
+  // return jobcardlist
+
   return (
     <>
-      {isLoading === true
+      {isLoading
         ? <h1>Loading...</h1>
         :
         <>

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
  * CompanyList -> CompanyCard
  */
 
+// can restructure company
 function CompanyCard({ company }) {
   return (
     <div className="card w-75 mb-4 mt-4 mx-auto">

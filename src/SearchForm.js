@@ -14,6 +14,7 @@ import { useState } from 'react';
 function SearchForm({ setSearch }) {
   const [formData, setFormData] = useState('');
 
+  //TODO: change setSearch fn name
   function handleSubmit(evt) {
     evt.preventDefault();
     setSearch(formData);
@@ -24,6 +25,7 @@ function SearchForm({ setSearch }) {
     setFormData(value);
   }
 
+  //TODO: add aria-label
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
       <div className='input-group'>

@@ -3,6 +3,7 @@
  * JobCardList -> Job
  */
 
+//change component name to JobCard
 function Job({ job }) {
   return (
     <div className="card w-75 mb-4 mt-4 mx-auto">

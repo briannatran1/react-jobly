@@ -27,11 +27,11 @@ function CompanyList() {
     fetchCompanies();
   }, [searchTerm]);
 
+  //TODO: change name
   /** updating searchTerm state */
   function setSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
   }
-
 
   return (
     <>
