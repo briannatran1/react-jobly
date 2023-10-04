@@ -1,17 +1,17 @@
-import Job from "./Job";
+import JobCard from "./JobCard";
 
 /** JobCardList: renders all jobs
  *
  * Props:
  * - jobs like [{job}, ...]
  *
- * CompanyDetail -> JobCardList -> Job
+ * CompanyDetail -> JobCardList -> JobCard
  *
  */
 function JobCardList({ jobs }) {
   return (
     jobs.map(job => (
-      <Job key={job.id} job={job} />
+      <JobCard key={job.id} job={job} />
     ))
   );
 }

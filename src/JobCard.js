@@ -1,10 +1,9 @@
-/** Job: Render details about a job.
+/** JobCard: Render details about a job.
  *
- * JobCardList -> Job
+ * JobCardList -> JobCard
  */
 
-//change component name to JobCard
-function Job({ job }) {
+function JobCard({ job }) {
   return (
     <div className="card w-75 mb-4 mt-4 mx-auto">
       <h5 className="pt-3">{job.title}</h5>
@@ -14,4 +13,4 @@ function Job({ job }) {
   );
 }
 
-export default Job;
+export default JobCard;
