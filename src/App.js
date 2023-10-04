@@ -29,7 +29,11 @@ function App() {
     setCurrentUser(userData);
   }
 
-
+  useEffect(function fetchCurrentUserWhenMounted() {
+    async function fetchCurrentUser() {
+      const userData = await JoblyApi.getUserData(formData.username);
+    }
+  });
 
   /** logs out a user */
   function logout() {
