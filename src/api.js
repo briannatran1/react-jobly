@@ -48,29 +48,23 @@ class JoblyApi {
 
   /** Get details on a company by handle. Returns {company} */
   static async getCompany(handle) {
-    console.log("inside getCompany API.js")
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  /** Get all companies. Returns [{company}, ...] */
-  static async getCompanies() {
-    let res = await this.request(`companies`);
-    return res.companies;
-  }
-
   /** Filter by name for all companies. Returns [{company}, ...] */
-  static async filterCompanies(data) {
-    const searchParam = data.nameLike === '' ? {} : data;
+  static async filterCompanies(searchTerm) {
+    const searchParam = searchTerm === '' ? {} : { nameLike: searchTerm };
 
     let res = await this.request(`companies`, searchParam);
     return res.companies;
   }
 
+  /** Filter by title for all jobs. Returns [{job}, ...] */
+  static async filterJobs(searchTerm) {
+    const searchParam = searchTerm === '' ? {} : { title: searchTerm };
 
-  /** Get all jobs. Returns [{job}, ... ] */
-  static async getJobs() {
-    let res = await this.request(`jobs`);
+    let res = await this.request(`jobs`, searchParam);
     return res.jobs;
   }
 }

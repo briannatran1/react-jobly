@@ -1,29 +1,27 @@
 import { useState } from 'react';
 
-/** SearchForm:
+/** SearchForm: search form for jobs and companies to filter
  *
  * State:
  * - formData like {}
  *
  * Props:
  * - setSearch(): fn to set state in parent
+ *
+ * {CompanyList, JobList} -> SearchForm
  */
 
 function SearchForm({ setSearch }) {
-  const [formData, setFormData] = useState({ nameLike: "" });
+  const [formData, setFormData] = useState('');
 
   function handleSubmit(evt) {
-    console.log("form data in searchform", formData);
     evt.preventDefault();
     setSearch(formData);
   }
 
   function handleChange(evt) {
-    const { name, value } = evt.target;
-    setFormData((fData) => ({
-      ...fData,
-      [name]: value,
-    }));
+    const { value } = evt.target;
+    setFormData(value);
   }
 
   return (
@@ -31,9 +29,9 @@ function SearchForm({ setSearch }) {
       <div className='input-group'>
         <input
           className='form-control form-control-sm'
-          id="nameLike"
-          name="nameLike"
-          value={formData.nameLike}
+          id="search"
+          name="search"
+          value={formData}
           onChange={handleChange}
           placeholder='Enter search term...'
         >

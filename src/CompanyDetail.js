@@ -3,11 +3,12 @@ import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 
-/** CompanyDetail
+/** CompanyDetail: renders details about a company
  *
  * State:
  * - company like {handle, name, description, numEmployees, logoUrl, jobs: []}
  *
+ * RoutesList -> CompanyDetail -> JobCardList
  */
 
 function CompanyDetail() {
@@ -30,7 +31,7 @@ function CompanyDetail() {
 
   return (
     <>
-      {notFound === true && <Navigate to="/"/>}
+      {notFound === true && <Navigate to="/" />}
 
       {Object.keys(company).length === 0
         ? <h1>Loading...</h1>

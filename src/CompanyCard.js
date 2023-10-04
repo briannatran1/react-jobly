@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 
-/** CompanyCard:
+/** CompanyCard: renders details about a specific company
  *
  * Props:
  * - company like
  * {handle, name, description, numEmployees, logoUrl, jobs: []}
  *
+ * CompanyList -> CompanyCard
  */
 
 function CompanyCard({ company }) {

@@ -1,9 +1,11 @@
 import Job from "./Job";
 
-/** JobCardList
+/** JobCardList: renders all jobs
  *
  * Props:
  * - jobs like [{job}, ...]
+ *
+ * CompanyDetail -> JobCardList -> Job
  *
  */
 function JobCardList({ jobs }) {

@@ -1,8 +1,16 @@
 
-/** Homepage: Welcome page. */
+/** Homepage: Welcome page.
+ *
+ * RoutesList -> Homepage
+*/
 function Homepage() {
 
-  return <h1>I AM THE HOMEPAGE</h1>
+  return (
+    <>
+      <h1 className="mt-4">Jobly</h1>
+      <p>All the jobs in one, convenient place.</p>
+    </>
+  );
 }
 
-export default Homepage
+export default Homepage;
