@@ -58,6 +58,15 @@ class JoblyApi {
     return res.companies;
   }
 
+    /** Filter by name for all companies. Returns [{company}, ...] */
+    static async filterCompanies(data) {
+      console.log("data inside filterCompanies", data)
+      let res = await this.request(`companies`, data);
+      console.log("res.companies inside filtercompanies", res.companies)
+      return res.companies;
+    }
+
+
   /** Get all jobs. Returns [{job}, ... ] */
   static async getJobs() {
     let res = await this.request(`jobs`);

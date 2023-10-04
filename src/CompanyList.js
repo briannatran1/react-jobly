@@ -13,18 +13,19 @@ import CompanyCard from "./CompanyCard";
 
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState({});
 
   useEffect(function fetchCompaniesWhenMounted() {
     async function fetchCompanies() {
-      setCompanies(await JoblyApi.getCompanies());
+      setCompanies(await JoblyApi.filterCompanies(searchTerm));
     }
     fetchCompanies();
-  }, []);
+  }, [searchTerm]);
 
   /** updating searchTerm state */
   function setSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
+    console.log("searchTerm inside companylist", searchTerm)
   }
 
   return (

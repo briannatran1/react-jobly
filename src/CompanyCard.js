@@ -1,4 +1,3 @@
-
 /** CompanyCard:
  *
  * Props:
@@ -9,10 +8,12 @@
 
 function CompanyCard({ company }) {
   return (
-    <div className="card">
+    <div className="card w-75 mb-4 mt-4 mx-auto">
+      <div>
       {company.logoUrl &&
-        <img src={company.logoUrl} alt={company.handle} width={60} />}
-      <h6>{company.name}</h6>
+        <img className="pt-3" src={company.logoUrl} alt={company.handle} width={60} />}
+      <h6 className="pt-3">{company.name}</h6>
+      </div>
       <p>{company.description}</p>
     </div>
   );
