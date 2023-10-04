@@ -8,13 +8,13 @@ import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 
 /** RoutesList: All routes. */
-function RoutesList() {
+function RoutesList({ login, signup }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
 
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/signup" element={<SignupForm />} />
+      <Route path="/login" element={<LoginForm login={login}/>} />
+      <Route path="/signup" element={<SignupForm signup={signup}/>} />
       <Route path="/profile" element={<ProfileForm />} />
 
       <Route path="/companies" element={<CompanyList />} />

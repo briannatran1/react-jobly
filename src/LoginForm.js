@@ -13,7 +13,7 @@ function LoginForm({ login }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    //login()
+    login(formData);
   }
 
   function handleChange(evt) {
@@ -31,7 +31,7 @@ function LoginForm({ login }) {
         <input
           aria-label="username"
           className='form-control form-control-sm'
-          id="username"
+          id="login-username"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -45,7 +45,7 @@ function LoginForm({ login }) {
           type="password"
           aria-label="password"
           className='form-control form-control-sm'
-          id="password"
+          id="login-password"
           name="password"
           value={formData.password}
           onChange={handleChange}

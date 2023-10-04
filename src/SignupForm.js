@@ -16,7 +16,7 @@ function SignupForm({ signup }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    //signup()
+    signup(formData);
   }
 
   function handleChange(evt) {
@@ -34,7 +34,7 @@ function SignupForm({ signup }) {
         <input
           aria-label="username"
           className='form-control form-control-sm'
-          id="username"
+          id="signup-username"
           name="username"
           value={formData.username}
           onChange={handleChange}
@@ -48,7 +48,7 @@ function SignupForm({ signup }) {
           type="password"
           aria-label="password"
           className='form-control form-control-sm'
-          id="password"
+          id="signup-password"
           name="password"
           value={formData.password}
           onChange={handleChange}
@@ -61,7 +61,7 @@ function SignupForm({ signup }) {
         <input
           aria-label="firstName"
           className='form-control form-control-sm'
-          id="firstName"
+          id="signup-firstName"
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
@@ -74,7 +74,7 @@ function SignupForm({ signup }) {
         <input
           aria-label="lastName"
           className='form-control form-control-sm'
-          id="lastName"
+          id="signup-lastName"
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
@@ -87,7 +87,7 @@ function SignupForm({ signup }) {
         <input
           aria-label="email"
           className='form-control form-control-sm'
-          id="email"
+          id="signup-email"
           name="email"
           value={formData.email}
           onChange={handleChange}
