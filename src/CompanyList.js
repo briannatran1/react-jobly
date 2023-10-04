@@ -7,7 +7,7 @@ import CompanyCard from "./CompanyCard";
  *
  * State:
  * - companies like [{company},...]
- * - searchTerm: str
+ * - searchTerm: obj
  *
 */
 
@@ -25,7 +25,7 @@ function CompanyList() {
   /** updating searchTerm state */
   function setSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
-    console.log("searchTerm inside companylist", searchTerm)
+    console.log("searchTerm inside companylist", searchTerm);
   }
 
   return (

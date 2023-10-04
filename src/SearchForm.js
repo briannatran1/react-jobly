@@ -13,7 +13,7 @@ function SearchForm({ setSearch }) {
   const [formData, setFormData] = useState({ nameLike: "" });
 
   function handleSubmit(evt) {
-    console.log("form data in searchform", formData)
+    console.log("form data in searchform", formData);
     evt.preventDefault();
     setSearch(formData);
   }
@@ -27,18 +27,21 @@ function SearchForm({ setSearch }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        id="nameLike"
-        name="nameLike"
-        value={formData.nameLike}
-        onChange={handleChange}
-        placeholder='Enter search term...'
-      >
-      </input>
-      <button
-      className="btn btn-primary"
-      disabled={!formData.nameLike}>Submit</button>
+    <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
+      <div className='input-group'>
+        <input
+          className='form-control form-control-sm'
+          id="nameLike"
+          name="nameLike"
+          value={formData.nameLike}
+          onChange={handleChange}
+          placeholder='Enter search term...'
+        >
+        </input>
+        <button
+          className="btn btn-primary"
+          disabled={!formData.nameLike}>Submit</button>
+      </div>
     </form>
   );
 }
