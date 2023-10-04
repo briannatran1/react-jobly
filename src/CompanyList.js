@@ -14,10 +14,12 @@ import CompanyCard from "./CompanyCard";
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(function fetchCompaniesWhenMounted() {
     async function fetchCompanies() {
       setCompanies(await JoblyApi.filterCompanies(searchTerm));
+      setIsLoading(false);
     }
     fetchCompanies();
   }, [searchTerm]);
@@ -29,14 +31,21 @@ function CompanyList() {
   }
 
 
-
   return (
     <>
-      <SearchForm setSearch={setSearch} />
+      {isLoading === true
+        ? <h1>Loading...</h1>
+        :
+        <>
+          <SearchForm setSearch={setSearch} />
+          {companies.length === 0 &&
+            <h5 className="mt-4">Sorry, no results were found!</h5>}
 
-      {companies.map(company => (
-        <CompanyCard key={company.handle} company={company} />
-      ))}
+          {companies.map(company => (
+            <CompanyCard key={company.handle} company={company} />
+          ))}
+        </>
+      }
     </>
   );
 }

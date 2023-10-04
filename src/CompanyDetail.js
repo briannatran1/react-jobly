@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
-import Job from './Job';
+import JobCardList from './JobCardList';
 
 /** CompanyDetail
  *
@@ -12,26 +12,36 @@ import Job from './Job';
 
 function CompanyDetail() {
   const [company, setCompany] = useState({});
+  const [notFound, setNotFound] = useState(false);
 
-  const params = useParams(); // {handle}
-  const handle = params.handle;
+  const params = useParams();
 
   useEffect(function fetchCompanyWhenMounted() {
     async function fetchCompany() {
-      setCompany(await JoblyApi.getCompany(handle));
+      try {
+        setCompany(await JoblyApi.getCompany(params.handle));
+      }
+      catch {
+        setNotFound(true);
+      }
     }
     fetchCompany();
   }, []);
 
   return (
-    <div>
-      <h4>{company.name}</h4>
-      <p>{company.description}</p>
+    <>
+      {notFound === true && <Navigate to="/"/>}
 
-      {company.jobs.map(job => (
-        <Job key={job.id} job={job} />
-      ))}
-    </div>
+      {Object.keys(company).length === 0
+        ? <h1>Loading...</h1>
+        : <div>
+          <h4>{company.name}</h4>
+          <p>{company.description}</p>
+
+          <JobCardList jobs={company.jobs} />
+        </div>
+      }
+    </>
   );
 }
 

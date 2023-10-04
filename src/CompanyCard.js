@@ -14,7 +14,7 @@ function CompanyCard({ company }) {
       <div>
         {company.logoUrl &&
           <img className="pt-3" src={company.logoUrl} alt={company.handle} width={60} />}
-        <h6 className="pt-3"> <Link to={`/companies/${company.handle}`} />{company.name}</h6>
+        <h6 className="pt-3"> <Link to={`/companies/${company.handle}`}>{company.name}</Link></h6>
       </div>
       <p>{company.description}</p>
     </div>
