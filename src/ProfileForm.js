@@ -5,6 +5,9 @@ import { useState } from "react";
  * RoutesList -> ProfileForm
  */
 function ProfileForm({ userProfile }) {
+
+  //TODO: bring in context to initalState to pre-populate
+
   const initialState = {
     username: "",
     firstName: "",
@@ -33,7 +36,7 @@ function ProfileForm({ userProfile }) {
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
       <div className='mb-3'>
-        <label className="form-label" htmlFor="username"><b>Username</b></label>
+        <label className="form-label" htmlFor="profile-username"><b>Username</b></label>
         <input
           aria-label="username"
           disabled={true}
@@ -47,7 +50,7 @@ function ProfileForm({ userProfile }) {
       </div>
 
       <div className='mb-3'>
-        <label className="form-label" htmlFor="firstName"><b>First Name</b></label>
+        <label className="form-label" htmlFor="profile-firstName"><b>First Name</b></label>
         <input
           aria-label="firstName"
           className='form-control form-control-sm'
@@ -60,7 +63,7 @@ function ProfileForm({ userProfile }) {
       </div>
 
       <div className='mb-3'>
-        <label className="form-label" htmlFor="lastName"><b>Last Name</b></label>
+        <label className="form-label" htmlFor="profile-lastName"><b>Last Name</b></label>
         <input
           aria-label="lastName"
           className='form-control form-control-sm'
@@ -73,7 +76,7 @@ function ProfileForm({ userProfile }) {
       </div>
 
       <div className='mb-3'>
-        <label className="form-label" htmlFor="email"><b>Email</b></label>
+        <label className="form-label" htmlFor="profile-email"><b>Email</b></label>
         <input
           aria-label="email"
           className='form-control form-control-sm'

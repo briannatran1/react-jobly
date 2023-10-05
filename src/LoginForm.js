@@ -3,7 +3,12 @@ import userContext from "./userContext";
 import { Navigate } from 'react-router-dom';
 import Alert from "./Alert";
 
+//TODO: add state in docstring
+
 /** LoginForm: for authentication.
+ *
+ * State:
+ * -
  *
  * RoutesList -> LoginForm
  */
@@ -16,6 +21,7 @@ function LoginForm({ login }) {
   const [errors, setErrors] = useState([]);
   const { currentUser } = useContext(userContext);
 
+  /** submits form and checks for errors */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -26,6 +32,7 @@ function LoginForm({ login }) {
     }
   }
 
+  /** updates formData */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(curr => ({

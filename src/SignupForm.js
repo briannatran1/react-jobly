@@ -3,8 +3,13 @@ import { Navigate } from "react-router-dom";
 import userContext from "./userContext";
 import Alert from "./Alert";
 
-
 /** SignupForm: for authentication.
+ *
+ * State:
+ * - formData like {}
+ * - errors like [{message: '' or [] }]
+ *
+ * useContext => currentUser {}
  *
  * RoutesList -> SignupForm
  */
@@ -22,6 +27,7 @@ function SignupForm({ signup }) {
 
   const { currentUser } = useContext(userContext);
 
+  /** submits form and checks for errors */
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -32,6 +38,7 @@ function SignupForm({ signup }) {
     }
   }
 
+  /** updates formData */
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(curr => ({

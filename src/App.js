@@ -8,7 +8,8 @@ import userContext from "./userContext";
 
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
-  const [token, setToken] = useState('');
+  //FIXME: JWT-decode library npm install this and decode token to extract username in token, can remove username
+  const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState({});
 
@@ -29,8 +30,13 @@ function App() {
   }
 
   /** Update currentUser when token updates. */
+  //FIXME: if we have token, then extract username from token
+  // if not, do nothing or set currentUser to {}
+
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
+      // can set token on class here
+      //JoblyApi.token = token
       const userData = await JoblyApi.getUserData(username);
       setCurrentUser(userData);
     }
@@ -42,7 +48,9 @@ function App() {
 
   /** logs out a user */
   function logout() {
+    //FIXME: setToken to null
     setToken('');
+    //FIXME: get rid of setUsername
     setUsername('');
     setCurrentUser({});
   }
