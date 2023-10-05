@@ -6,7 +6,6 @@ import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from "./userContext";
 import jwt_decode from "jwt-decode";
-import ProtectedRoutesList from './ProtectedRoutesList';
 
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
@@ -59,11 +58,10 @@ function App() {
       <BrowserRouter>
         <userContext.Provider value={{ currentUser }}>
           <Nav logout={logout} currentUser={currentUser} />
-          {loadedCurrentUser &&
-            <ProtectedRoutesList />}
-          <RoutesList
-            login={login}
-            signup={signup} />
+            <RoutesList
+              login={login}
+              signup={signup}
+              loadedCurrentUser={loadedCurrentUser}/>
         </userContext.Provider>
       </BrowserRouter>
     </div>

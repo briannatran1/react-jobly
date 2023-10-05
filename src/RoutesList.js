@@ -14,20 +14,25 @@ import ProfileForm from "./ProfileForm";
  * - signup(): update state in parent
  *
 */
-function RoutesList({ login, signup }) {
+function RoutesList({ login, signup, loadedCurrentUser }) {
+  console.log("asdasd",loadedCurrentUser)
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
 
       <Route path="/login" element={<LoginForm login={login} />} />
       <Route path="/signup" element={<SignupForm signup={signup} />} />
-      {/*
-      <Route path="/profile" element={<ProfileForm />} />
-      <Route path="/companies" element={<CompanyList />} />
-      <Route path="/companies/:handle" element={<CompanyDetail />} />
-      <Route path="/jobs" element={<JobList />} /> */}
 
-      <Route path="*" element={<Navigate to="/" />} />
+      {loadedCurrentUser &&
+        <>
+          <Route path="/profile" element={<ProfileForm />} />
+          <Route path="/companies" element={<CompanyList />} />
+          <Route path="/companies/:handle" element={<CompanyDetail />} />
+          <Route path="/jobs" element={<JobList />} />
+        </>
+      }
+
+      {/* <Route path="*" element={<Navigate to="/" />} /> */}
     </Routes>
   );
 }

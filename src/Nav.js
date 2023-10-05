@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
 import './Nav.css';
 
-/** Nav: Nav bar with links to Homepage, Companies, Jobs. */
+/** Nav: Nav bar with links to Homepage, Companies, Jobs.
+ *
+ * Props:
+ * - logout(): function to update state in parent
+ * - currentUser: {}
+ */
 function Nav({ logout, currentUser = {} }) {
 
   /** renders if user is not logged in */
