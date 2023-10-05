@@ -20,6 +20,7 @@ function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  // const [loadedCurrentUser, setLoadedCurrentUser] = useState(false); FIXME:
 
   const { currentUser } = useContext(userContext);
 
@@ -37,15 +38,13 @@ function CompanyList() {
     setSearchTerm(newSearchTerm);
   }
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
+  if (currentUser.user && loadedCurrentUser === false) {
+    setLoadedCurrentUser(true);
   }
+  if (isLoading || !loadedCurrentUser) return <h1>Loading...</h1>;
 
-  if (!currentUser.user) {
-    return <Navigate to='/' />;
-  }
-
-  return (
+  if (loadedCurrentUser) {
+    return (
     <div className="CompanyList">
       <SearchForm updateSearch={updateSearch} />
       {companies.length === 0 &&
@@ -53,9 +52,12 @@ function CompanyList() {
 
       {companies.map(company => (
         <CompanyCard key={company.handle} company={company} />
-      ))}
+        ))}
     </div>
   );
+}
+
+return <Navigate to='/' />;
 }
 
 export default CompanyList;
