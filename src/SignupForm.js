@@ -9,7 +9,6 @@ import Alert from "./Alert";
  * RoutesList -> SignupForm
  */
 function SignupForm({ signup }) {
-  const { currentUser, errors } = useContext(userContext);
 
   const initialState = {
     username: "",
@@ -19,10 +18,18 @@ function SignupForm({ signup }) {
     email: "",
   };
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState([]);
 
-  function handleSubmit(evt) {
+  const { currentUser } = useContext(userContext);
+
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    signup(formData);
+    try {
+      await signup(formData);
+    }
+    catch (err) {
+      setErrors(err);
+    }
   }
 
   function handleChange(evt) {
@@ -34,8 +41,6 @@ function SignupForm({ signup }) {
   }
 
   if (currentUser.user) return <Navigate to='/' />;
-
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
