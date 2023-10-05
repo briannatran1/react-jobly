@@ -31,9 +31,7 @@ function App() {
   /** Update currentUser when token updates. */
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
-      console.log("runs inside fetchCurrentUser")
       const localToken = localStorage.getItem("token");
-      console.log("localtoken inside useeffect app:", localToken)
       setToken(localToken);
 
       if (token) {
