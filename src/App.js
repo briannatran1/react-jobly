@@ -11,7 +11,6 @@ function App() {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState({});
-  const [errors, setErrors] = useState([]); // ??????????FIXME:????????????????????
 
   /** logs a user in */
   async function login(formData) {
@@ -22,13 +21,7 @@ function App() {
 
   /** registers a user */
   async function signup(formData) {
-
-    try {
-      const token = await JoblyApi.register(formData);
-    } catch (err) {
-      console.log("err object inside app signup", err);
-    }
-
+    const token = await JoblyApi.register(formData);
     setUsername(formData.username);
     setToken(token);
   }
@@ -48,6 +41,7 @@ function App() {
   /** logs out a user */
   function logout() {
     setToken('');
+    setUsername('');
     setCurrentUser({});
   }
 

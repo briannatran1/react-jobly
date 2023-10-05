@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Navigate } from "react-router-dom";
+import userContext from "./userContext";
 import Alert from "./Alert";
+
 
 /** SignupForm: for authentication.
  *
  * RoutesList -> SignupForm
  */
 function SignupForm({ signup }) {
+  const { currentUser } = useContext(userContext);
+
   const initialState = {
     username: "",
     password: "",
@@ -29,6 +34,8 @@ function SignupForm({ signup }) {
       [name]: value,
     }));
   }
+
+  if (currentUser.user) return <Navigate to='/' />
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>

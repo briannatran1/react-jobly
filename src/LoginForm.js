@@ -28,12 +28,13 @@ function LoginForm({ login }) {
     }));
   }
 
+  if (currentUser.user) return <Navigate to='/' />
+
   return (
     <>
-      {currentUser?.user && <Navigate to='/' />}
       <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
         <div className='mb-3'>
-          <label className="form-label" htmlFor="username"><b>Username</b></label>
+          <label className="form-label" htmlFor="login-username"><b>Username</b></label>
           <input
             aria-label="username"
             className='form-control form-control-sm'
@@ -46,7 +47,7 @@ function LoginForm({ login }) {
         </div>
 
         <div className='mb-3'>
-          <label className="form-label" htmlFor="password"><b>Password</b></label>
+          <label className="form-label" htmlFor="login-password"><b>Password</b></label>
           <input
             type="password"
             aria-label="password"

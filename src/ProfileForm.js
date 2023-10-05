@@ -6,16 +6,15 @@ import { useState } from "react";
  */
 function ProfileForm({ userProfile }) {
   const initialState = {
-    username: "dummyusername",//
-    firstName: "Nathan",//,
-    lastName: "tesst",//,
-    email: "@",//,
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
   };
 
   const [formData, setFormData] = useState(initialState);
 
   // function updateProfile() {
-
   // }
 
   function handleSubmit(evt) {

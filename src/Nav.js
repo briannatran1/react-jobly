@@ -30,8 +30,8 @@ function Nav({ logout, currentUser = {} }) {
                 <NavLink className="nav-link" to="/profile">Profile</NavLink>
               </li>
               <button
-                className='btn btn-link text-decoration-none'
-                onSubmit={logout}>Log Out {currentUser.user.username}</button>
+                className='btn link-danger text-decoration-none'
+                onClick={logout}>Log Out {currentUser.user.username}</button>
             </div>
           }
         </ul>

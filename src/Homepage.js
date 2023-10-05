@@ -13,13 +13,13 @@ function Homepage() {
     <div>
       <h1 className="mt-4">Jobly</h1>
       <p>All the jobs in one, convenient place.</p>
-      {!currentUser?.user
+      {!currentUser.user
         ? <div>
-          <Link to='/login' className='btn btn-primary me-3'>Login</Link>
+          <Link to='/login' className='btn btn-secondary me-3'>Login</Link>
           <Link to='/signup' className='btn btn-primary'>Signup</Link>
         </div>
         : <div>
-          <h3>Welcome Back, {currentUser.user.username}</h3>
+          <h3>Welcome Back, {currentUser.user.username}!</h3>
         </div>}
     </div>
   );
