@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import userContext from "./userContext";
 import { Navigate } from 'react-router-dom';
+import Alert from "./Alert";
 
 /** LoginForm: for authentication.
  *
@@ -12,13 +13,17 @@ function LoginForm({ login }) {
     password: "",
   };
   const [formData, setFormData] = useState(initialState);
-  // const [errors, setErrors] = useState([]);
-
+  const [errors, setErrors] = useState([]);
   const { currentUser } = useContext(userContext);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    login(formData);
+    try {
+      await login(formData);
+    }
+    catch (err) {
+      setErrors(err);
+    }
   }
 
   function handleChange(evt) {
@@ -43,7 +48,6 @@ function LoginForm({ login }) {
             name="username"
             value={formData.username}
             onChange={handleChange}
-            required
           />
         </div>
 
@@ -57,9 +61,11 @@ function LoginForm({ login }) {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
         </div>
+
+        {errors.length > 0 &&
+          <Alert errors={errors[0].message} />}
 
         <button
           className="btn btn-primary"

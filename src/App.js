@@ -11,29 +11,21 @@ function App() {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState({});
-  const [errors, setErrors] = useState([]);
 
   /** logs a user in */
   async function login(formData) {
     const token = await JoblyApi.login(formData);
+
     setUsername(formData.username);
     setToken(token);
   }
 
   /** registers a user */
   async function signup(formData) {
-    try {
-      const token = await JoblyApi.register(formData);
-      setUsername(formData.username);
-      setToken(token);
-    }
-    catch (err) {
-      const oneError = err[0].message;
-      if (err[0].message.length === 1) {
-        setErrors();
-      }
-      setErrors(err);
-    }
+    const token = await JoblyApi.register(formData);
+
+    setUsername(formData.username);
+    setToken(token);
   }
 
   /** Update currentUser when token updates. */
@@ -58,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <userContext.Provider value={{ currentUser, errors }}>
+        <userContext.Provider value={{ currentUser }}>
           <Nav logout={logout} currentUser={currentUser} />
           <RoutesList login={login} signup={signup} />
         </userContext.Provider>

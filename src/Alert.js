@@ -5,16 +5,17 @@
 */
 
 function Alert({ errors }) {
+
   return (
     <div className="alert alert-danger">
-      {
-        errors.map((error, idx) => (
+      {Array.isArray(errors)
+        ? errors.map((error, idx) => (
           <p key={idx}>{error}</p>
         ))
+        : <p>{errors}</p>
       }
     </div>
   );
-
 }
 
 export default Alert;
