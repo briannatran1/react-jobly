@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Alert from "./Alert";
 
 /** SignupForm: for authentication.
  *
@@ -13,11 +14,13 @@ function SignupForm({ signup }) {
     email: "",
   };
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
     signup(formData);
-  }
+
+  };
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -38,7 +41,7 @@ function SignupForm({ signup }) {
           name="username"
           value={formData.username}
           onChange={handleChange}
-          required
+
         />
       </div>
 
@@ -52,7 +55,7 @@ function SignupForm({ signup }) {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          required
+
         />
       </div>
 
@@ -65,7 +68,7 @@ function SignupForm({ signup }) {
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
-          required
+
         />
       </div>
 
@@ -78,7 +81,7 @@ function SignupForm({ signup }) {
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
-          required
+
         />
       </div>
 
@@ -91,9 +94,11 @@ function SignupForm({ signup }) {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          required
+
         />
       </div>
+
+      {errors.length > 0 && <Alert />}
 
       <button
         className="btn btn-primary"

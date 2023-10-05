@@ -5,19 +5,13 @@ import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from "./userContext";
-import Homepage from './Homepage';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
-import ProfileForm from './ProfileForm';
-import CompanyList from './CompanyList';
-import CompanyDetail from './CompanyDetail';
-import JobList from './JobList';
 
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
   const [token, setToken] = useState('');
   const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState({});
+  const [errors, setErrors] = useState([]); // ??????????FIXME:????????????????????
 
   /** logs a user in */
   async function login(formData) {
@@ -28,7 +22,13 @@ function App() {
 
   /** registers a user */
   async function signup(formData) {
-    const token = await JoblyApi.register(formData);
+
+    try {
+      const token = await JoblyApi.register(formData);
+    } catch(err){
+      console.log("err object inside app signup",err)
+    }
+
     setUsername(formData.username);
     setToken(token);
   }
