@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
+import userContext from './userContext';
+
 
 /** CompanyDetail: renders details about a company
  *
@@ -17,6 +19,7 @@ function CompanyDetail() {
   const [notFound, setNotFound] = useState(false);
 
   const params = useParams();
+  const { currentUser } = useContext(userContext);
 
   useEffect(function fetchCompanyWhenMounted() {
     async function fetchCompany() {
@@ -31,21 +34,25 @@ function CompanyDetail() {
     fetchCompany();
   }, []);
 
-  return (
-    <>
-      {notFound === true && <h1>Company Not Found</h1>}
+  if (currentUser.user) {
+    return (
+      <>
+        {notFound === true && <h1>Company Not Found</h1>}
 
-      {Object.keys(company).length === 0
-        ? <h1>Loading...</h1>
-        : <div>
-          <h4>{company.name}</h4>
-          <p>{company.description}</p>
+        {Object.keys(company).length === 0
+          ? <h1>Loading...</h1>
+          : <div>
+            <h4>{company.name}</h4>
+            <p>{company.description}</p>
 
-          <JobCardList jobs={company.jobs} />
-        </div>
-      }
-    </>
-  );
+            <JobCardList jobs={company.jobs} />
+          </div>
+        }
+      </>
+    );
+  }
+
+  return <Navigate to='/' />;
 }
 
 export default CompanyDetail;

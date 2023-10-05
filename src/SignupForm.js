@@ -25,6 +25,7 @@ function SignupForm({ signup }) {
   };
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { currentUser } = useContext(userContext);
 

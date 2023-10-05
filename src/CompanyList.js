@@ -1,7 +1,9 @@
 import JoblyApi from "./api";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SearchForm from "./SearchForm";
 import CompanyCard from "./CompanyCard";
+import userContext from "./userContext";
+import { Navigate } from 'react-router-dom';
 
 /** CompanyList: render all companies based on an optional filter.
  *
@@ -19,6 +21,8 @@ function CompanyList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  const { currentUser } = useContext(userContext);
+
   useEffect(function fetchCompaniesWhenMounted() {
     async function fetchCompanies() {
       setIsLoading(true);
@@ -35,6 +39,10 @@ function CompanyList() {
 
   if (isLoading) {
     return <h1>Loading...</h1>;
+  }
+
+  if (!currentUser.user) {
+    return <Navigate to='/' />;
   }
 
   return (
