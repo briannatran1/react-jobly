@@ -19,13 +19,13 @@ function RoutesList({ login, signup }) {
     <Routes>
       <Route path="/" element={<Homepage />} />
 
-      <Route path="/login" element={<LoginForm login={login}/>} />
-      <Route path="/signup" element={<SignupForm signup={signup}/>} />
+      <Route path="/login" element={<LoginForm login={login} />} />
+      <Route path="/signup" element={<SignupForm signup={signup} />} />
+      {/*
       <Route path="/profile" element={<ProfileForm />} />
-
       <Route path="/companies" element={<CompanyList />} />
       <Route path="/companies/:handle" element={<CompanyDetail />} />
-      <Route path="/jobs" element={<JobList />} />
+      <Route path="/jobs" element={<JobList />} /> */}
 
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
