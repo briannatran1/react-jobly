@@ -72,17 +72,15 @@ class JoblyApi {
   static async login(data) {
     let res = await this.request(`auth/token`, data, 'POST');
     this.token = res.token;
-
-    console.log("RES.TOKEN INSIDE LOGIN API.JS", res.token); //FIXME:
-
-    return res.token;
+    return this.token;
   }
 
   /** Returns token upon signing up  */
   static async register(data) {
     let res = await this.request(`auth/register`, data, 'POST');
     this.token = res.token;
-    return res.token;
+    console.log('token in register api', this.token);
+    return this.token;
   }
 
   /** Returns user information */

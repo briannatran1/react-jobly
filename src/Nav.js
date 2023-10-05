@@ -8,7 +8,6 @@ function Nav({ logout, currentUser = {} }) {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">Jobly</NavLink>
 
-
         <ul className="navbar-nav ms-auto">
           {Object.keys(currentUser).length === 0
             ? <div>

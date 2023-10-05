@@ -22,15 +22,15 @@ function App() {
   /** logs a user in */
   async function login(formData) {
     const token = await JoblyApi.login(formData);
-    setToken(token);
     setUsername(formData.username);
+    setToken(token);
   }
 
   /** registers a user */
   async function signup(formData) {
     const token = await JoblyApi.register(formData);
-    setToken(token);
     setUsername(formData.username);
+    setToken(token);
   }
 
   /** Update currentUser when token updates. */
@@ -39,7 +39,10 @@ function App() {
       const userData = await JoblyApi.getUserData(username);
       setCurrentUser(userData);
     }
-    fetchCurrentUser();
+    // KEEP EYE ON THIS
+    if (username) {
+      fetchCurrentUser();
+    }
   }, [token]);
 
   /** logs out a user */
@@ -52,21 +55,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <userContext.Provider value={currentUser}>
-          <Homepage />
-          <LoginForm />
-          <SignupForm />
-          <ProfileForm userProfile={currentUser} />
-          <CompanyList />
-          <CompanyDetail />
-          <JobList />
+          <Nav logout={logout} currentUser={currentUser} />
+          <RoutesList login={login} signup={signup} />
         </userContext.Provider>
-
-        <Nav logout={logout} currentUser={currentUser}/>
-
-        <RoutesList login={login} signup={signup} />
       </BrowserRouter>
-
-
     </div>
   );
 }
