@@ -1,6 +1,9 @@
 /**
  * Alert: Display all alert messages.
  *
+ * Props:
+ * - errors: str or []
+ *
  * {LoginForm, SignupForm, ProfileForm} -> Alert
 */
 

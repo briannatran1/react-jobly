@@ -9,7 +9,8 @@ import Alert from "./Alert";
  * - formData like {}
  * - errors like [{message: '' or [] }]
  *
- * useContext => currentUser {}
+ * Context:
+ * -userContext => currentUser {}
  *
  * RoutesList -> SignupForm
  */

@@ -1,5 +1,8 @@
 /** JobCard: Render details about a job.
  *
+ * Prop:
+ * - job: object {id, title, salary, equity}
+ *
  * JobCardList -> JobCard
  */
 

@@ -5,19 +5,18 @@ import RoutesList from './RoutesList';
 import Nav from './Nav';
 import JoblyApi from './api';
 import userContext from "./userContext";
+import jwt_decode from "jwt-decode";
 
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
-  //FIXME: JWT-decode library npm install this and decode token to extract username in token, can remove username
   const [token, setToken] = useState(null);
-  const [username, setUsername] = useState('');
   const [currentUser, setCurrentUser] = useState({});
 
   /** logs a user in */
   async function login(formData) {
     const token = await JoblyApi.login(formData);
 
-    setUsername(formData.username);
+    localStorage.setItem("token", token)
     setToken(token);
   }
 
@@ -25,34 +24,33 @@ function App() {
   async function signup(formData) {
     const token = await JoblyApi.register(formData);
 
-    setUsername(formData.username);
+    localStorage.setItem("token", token)
     setToken(token);
   }
 
   /** Update currentUser when token updates. */
-  //FIXME: if we have token, then extract username from token
-  // if not, do nothing or set currentUser to {}
-
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
-      // can set token on class here
-      //JoblyApi.token = token
-      const userData = await JoblyApi.getUserData(username);
-      setCurrentUser(userData);
+      console.log("runs inside fetchCurrentUser")
+      const localToken = localStorage.getItem("token");
+      console.log("localtoken inside useeffect app:", localToken)
+      setToken(localToken);
+
+      if (token) {
+        JoblyApi.token = token;
+        const decoded = jwt_decode(token);
+        const userData = await JoblyApi.getUserData(decoded.username);
+        setCurrentUser(userData);
+      }
     }
-    // KEEP EYE ON THIS
-    if (username) {
-      fetchCurrentUser();
-    }
+    fetchCurrentUser();
   }, [token]);
 
   /** logs out a user */
   function logout() {
-    //FIXME: setToken to null
-    setToken('');
-    //FIXME: get rid of setUsername
-    setUsername('');
+    setToken(null);
     setCurrentUser({});
+    localStorage.removeItem("token")
   }
 
   return (

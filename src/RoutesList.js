@@ -7,7 +7,13 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 
-/** RoutesList: All routes. */
+/** RoutesList: All routes.
+ *
+ * Props:
+ * - login(): update state in parent
+ * - signup(): update state in parent
+ *
+*/
 function RoutesList({ login, signup }) {
   return (
     <Routes>

@@ -3,13 +3,11 @@ import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 
-//IN THE FUTURE: notFound rename to errors and set as empty arr
-// display errors in arr
-
 /** CompanyDetail: renders details about a company
  *
  * State:
  * - company like {handle, name, description, numEmployees, logoUrl, jobs: []}
+ * - notFound = boolean
  *
  * RoutesList -> CompanyDetail -> JobCardList
  */

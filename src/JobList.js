@@ -8,6 +8,7 @@ import JobCardList from "./JobCardList";
  * State:
  * - jobs like [{job}, ...]
  * - searchTerm: {}
+ * - isLoading: boolean
  *
  * RoutesList -> JobList -> {SearchForm, JobCardList}
  */
@@ -17,7 +18,7 @@ function JobList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  // don't need to useEffect to make API call
+  /** Update jobs state when searchTerm is updated. */
   useEffect(function fetchJobsWhenMounted() {
     async function fetchJobs() {
       setIsLoading(true);
@@ -27,7 +28,7 @@ function JobList() {
     fetchJobs();
   }, [searchTerm]);
 
-  /** updating searchTerm state */
+  /** Update searchTerm state. */
   function updateSearch(newSearchTerm) {
     setSearchTerm(newSearchTerm);
   }

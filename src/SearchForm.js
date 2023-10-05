@@ -6,7 +6,7 @@ import { useState } from 'react';
  * - formData like ""
  *
  * Props:
- * - setSearch(): fn to set state in parent
+ * - updateSearch(): fn to set state in parent
  *
  * {CompanyList, JobList} -> SearchForm
  */
@@ -14,11 +14,13 @@ import { useState } from 'react';
 function SearchForm({ updateSearch }) {
   const [formData, setFormData] = useState('');
 
+  /** Prevent default and update state in parent */
   function handleSubmit(evt) {
     evt.preventDefault();
     updateSearch(formData);
   }
 
+  /** Update state for form values. */
   function handleChange(evt) {
     const { value } = evt.target;
     setFormData(value);

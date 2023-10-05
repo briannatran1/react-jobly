@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 
 /** Homepage: Welcome page.
  *
+ * Context:
+ * -userContext {}
+ *
  * RoutesList -> Homepage
 */
 function Homepage() {

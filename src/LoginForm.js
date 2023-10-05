@@ -3,15 +3,17 @@ import userContext from "./userContext";
 import { Navigate } from 'react-router-dom';
 import Alert from "./Alert";
 
-//TODO: add state in docstring
-
 /** LoginForm: for authentication.
  *
  * State:
- * -
+ * - formData: {}
+ * - errors: []
  *
- * RoutesList -> LoginForm
- */
+ * Context:
+ * - userContext {}
+ *
+ * RoutesList -> LoginForm */
+
 function LoginForm({ login }) {
   const initialState = {
     username: "",

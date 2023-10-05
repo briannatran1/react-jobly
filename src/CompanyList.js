@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 import SearchForm from "./SearchForm";
 import CompanyCard from "./CompanyCard";
 
-/** CompanyList: render all companies based on an optional filter
+/** CompanyList: render all companies based on an optional filter.
  *
  * State:
  * - companies like [{company},...]
  * - searchTerm: obj
+ * - isLoading: boolean
  *
  * RoutesList -> CompanyList -> {SearchForm, CompanyCard}
  *
