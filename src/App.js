@@ -25,8 +25,8 @@ function App() {
 
     try {
       const token = await JoblyApi.register(formData);
-    } catch(err){
-      console.log("err object inside app signup",err)
+    } catch (err) {
+      console.log("err object inside app signup", err);
     }
 
     setUsername(formData.username);
@@ -54,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <userContext.Provider value={currentUser}>
+        <userContext.Provider value={{ currentUser }}>
           <Nav logout={logout} currentUser={currentUser} />
           <RoutesList login={login} signup={signup} />
         </userContext.Provider>

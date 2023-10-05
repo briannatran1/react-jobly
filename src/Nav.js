@@ -3,6 +3,7 @@ import './Nav.css';
 
 /** Nav: Nav bar with links to Homepage, Companies, Jobs. */
 function Nav({ logout, currentUser = {} }) {
+
   return (
     <nav className="Nav navbar navbar-light navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -28,7 +29,9 @@ function Nav({ logout, currentUser = {} }) {
               <li className="nav-item">
                 <NavLink className="nav-link" to="/profile">Profile</NavLink>
               </li>
-              <button onSubmit={logout}>Log Out {currentUser.username}</button>
+              <button
+                className='btn btn-link text-decoration-none'
+                onSubmit={logout}>Log Out {currentUser.user.username}</button>
             </div>
           }
         </ul>
