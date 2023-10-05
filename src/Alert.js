@@ -1,16 +1,18 @@
-
-
-/** Display all alert messages. */
+/**
+ * Alert: Display all alert messages.
+ *
+ * {LoginForm, SignupForm, ProfileForm} -> Alert
+*/
 
 function Alert({ errors }) {
   return (
-    <>
-    {
-      errors.message.map((error,idx) => (
-        <p key={idx}>{error}</p>
-      ))
-    }
-    </>
+    <div className="alert alert-danger">
+      {
+        errors.map((error, idx) => (
+          <p key={idx}>{error}</p>
+        ))
+      }
+    </div>
   );
 
 }

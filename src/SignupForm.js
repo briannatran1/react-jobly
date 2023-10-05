@@ -9,7 +9,7 @@ import Alert from "./Alert";
  * RoutesList -> SignupForm
  */
 function SignupForm({ signup }) {
-  const { currentUser } = useContext(userContext);
+  const { currentUser, errors } = useContext(userContext);
 
   const initialState = {
     username: "",
@@ -19,13 +19,11 @@ function SignupForm({ signup }) {
     email: "",
   };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState([]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
     signup(formData);
-
-  };
+  }
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -35,7 +33,9 @@ function SignupForm({ signup }) {
     }));
   }
 
-  if (currentUser.user) return <Navigate to='/' />
+  if (currentUser.user) return <Navigate to='/' />;
+
+  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
@@ -105,7 +105,8 @@ function SignupForm({ signup }) {
         />
       </div>
 
-      {errors.length > 0 && <Alert />}
+      {errors.length > 0 &&
+        <Alert errors={errors[0].message} />}
 
       <button
         className="btn btn-primary"

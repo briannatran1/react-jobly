@@ -12,6 +12,7 @@ function LoginForm({ login }) {
     password: "",
   };
   const [formData, setFormData] = useState(initialState);
+  // const [errors, setErrors] = useState([]);
 
   const { currentUser } = useContext(userContext);
 
@@ -28,7 +29,7 @@ function LoginForm({ login }) {
     }));
   }
 
-  if (currentUser.user) return <Navigate to='/' />
+  if (currentUser.user) return <Navigate to='/' />;
 
   return (
     <>
