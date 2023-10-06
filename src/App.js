@@ -29,7 +29,6 @@ function App() {
     setToken(token);
   }
 
-
   /** Update currentUser when token updates. */
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {

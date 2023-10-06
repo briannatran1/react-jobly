@@ -5,7 +5,9 @@ import Alert from "./Alert";
 /** ProfileForm: for editing profile details.
  *
  * State:
- * - formData: {}
+ * - formData: {username: '', firstName: '', lastName: '', email: ''}
+ * - errors: [{message: [] or '' }]
+ * - isSuccess: bool
  *
  * Context:
  * - currentUser {user: {}}
@@ -21,25 +23,38 @@ function ProfileForm({ updateProfile }) {
     email: currentUser.user.email,
   };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState([]);
-  const [isSuccess, setIsSuccess] = useState(false);
+
+  //FIXME: can bundle state
+  const [formMessages, setFormMessages] = useState({
+    errors: [],
+    isSuccess: false
+  });
 
   async function handleSubmit(evt) {
     evt.preventDefault();
 
     try {
       await updateProfile({ ...formData });
-      setIsSuccess(true);
+      setFormMessages(curr => ({
+        ...curr,
+        isSuccess: true
+      }));
     }
     catch (err) {
-      setIsSuccess(false);
-      setErrors(err);
+      setFormMessages(curr => ({
+        ...curr,
+        isSuccess: false,
+        errors: err
+      }));
     }
   }
 
   function handleChange(evt) {
-    setErrors([]);
-    setIsSuccess(false);
+    setFormMessages(curr => ({
+      ...curr,
+      isSuccess: false,
+      errors: []
+    }));
 
     const { name, value } = evt.target;
     setFormData(curr => ({
@@ -47,6 +62,8 @@ function ProfileForm({ updateProfile }) {
       [name]: value,
     }));
   }
+
+  console.log('currentUser', currentUser);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
@@ -99,11 +116,11 @@ function ProfileForm({ updateProfile }) {
         />
       </div>
 
-      {errors.length > 0 &&
-        < Alert errors={errors[0].message} isSuccess={isSuccess} />}
+      {formMessages.errors.length > 0 &&
+        < Alert errors={formMessages.errors[0].message} isSuccess={formMessages.isSuccess} />}
 
-      {isSuccess &&
-        < Alert isSuccess={isSuccess} />}
+      {formMessages.isSuccess &&
+        < Alert isSuccess={formMessages.isSuccess} />}
 
       <button
         className="btn btn-primary"
