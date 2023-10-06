@@ -79,7 +79,7 @@ function LoginForm({ login }) {
           <Alert errors={errors[0].message} />}
 
         <button
-          className="btn btn-primary"
+          className="btn btn-success"
         >Submit</button>
       </form >
     </>

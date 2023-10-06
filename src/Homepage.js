@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import userContext from './userContext';
 import { Link } from 'react-router-dom';
-import "./Homepage.css"
+import "./Homepage.css";
 
 /** Homepage: Welcome page.
  *
@@ -20,7 +20,7 @@ function Homepage() {
       {!currentUser.user
         ? <div>
           <Link to='/login' className='btn btn-secondary me-3'>Login</Link>
-          <Link to='/signup' className='btn btn-primary'>Signup</Link>
+          <Link to='/signup' className='btn btn-success'>Signup</Link>
         </div>
         : <div>
           <h3>Welcome Back, {currentUser.user.username}!</h3>

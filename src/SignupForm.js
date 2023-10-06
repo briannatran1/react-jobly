@@ -125,7 +125,7 @@ function SignupForm({ signup }) {
         <Alert errors={errors[0].message} />}
 
       <button
-        className="btn btn-primary"
+        className="btn btn-success"
       >Submit</button>
     </form>
   );
