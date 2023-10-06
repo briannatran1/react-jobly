@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import userContext from "./userContext";
+import Alert from "./Alert";
 
 /** ProfileForm: for editing profile details.
  *
+ * State:
+ * - formData: {}
+ *
+ * Context:
+ * - currentUser {user: {}}
+ *
  * RoutesList -> ProfileForm
  */
-function ProfileForm({ userProfile }) {
-
-  //TODO: bring in context to initalState to pre-populate
+function ProfileForm() {
+  const { currentUser } = useContext(userContext);
 
   const initialState = {
-    username: "",
-    firstName: "",
-    lastName: "",
-    email: "",
+    username: currentUser.user.username,
+    firstName: currentUser.user.firstName,
+    lastName: currentUser.user.lastName,
+    email: currentUser.user.email,
   };
 
   const [formData, setFormData] = useState(initialState);
-
-  // function updateProfile() {
-  // }
+  const [errors, setErrors] = useState([]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -87,6 +92,8 @@ function ProfileForm({ userProfile }) {
           required
         />
       </div>
+
+      <Alert />
 
       <button
         className="btn btn-primary"

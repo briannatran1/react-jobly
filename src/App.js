@@ -7,8 +7,6 @@ import JoblyApi from './api';
 import userContext from "./userContext";
 import jwt_decode from "jwt-decode";
 
-// TESTING
-
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
   const [token, setToken] = useState(null);
@@ -31,19 +29,21 @@ function App() {
     setToken(token);
   }
 
+
   /** Update currentUser when token updates. */
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
       const localToken = localStorage.getItem("token");
-      setToken(localToken);
 
-      if (token) {
-        JoblyApi.token = token;
-        const decoded = jwt_decode(token);
+      if (localToken) {
+        JoblyApi.token = localToken;
+        const decoded = jwt_decode(localToken);
         const userData = await JoblyApi.getUserData(decoded.username);
         setCurrentUser(userData);
+        setToken(localToken);
         setLoadedData(true);
-      } else {
+      }
+      else {
         setLoadedData(true);
       }
     }
@@ -55,6 +55,11 @@ function App() {
     setToken(null);
     setCurrentUser({});
     localStorage.removeItem("token");
+  }
+
+  /** updates user profile upon saving */
+  function updateProfile(formData) {
+
   }
 
   if (loadedData === false) {

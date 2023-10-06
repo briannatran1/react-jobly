@@ -44,7 +44,7 @@ function Nav({ logout, currentUser = {} }) {
   }
 
   return (
-    <nav className="Nav navbar navbar-light navbar-expand-lg bg-body-tertiary">
+    <nav className="Nav navbar navbar-light navbar-expand-lg">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">Jobly</NavLink>
 
