@@ -3,7 +3,8 @@ import { useState, useEffect, useContext } from 'react';
 import SearchForm from "./SearchForm";
 import JobCardList from "./JobCardList";
 import userContext from "./userContext";
-import { Navigate } from 'react-router-dom';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /** JobList: Show all jobs and a search form to filter.
  *

@@ -5,6 +5,8 @@ import JobCardList from './JobCardList';
 import userContext from './userContext';
 import "./CompanyDetail.css"
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
 
 /** CompanyDetail: renders details about a company
  *

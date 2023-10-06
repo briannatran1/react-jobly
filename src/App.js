@@ -7,6 +7,8 @@ import JoblyApi from './api';
 import userContext from "./userContext";
 import jwt_decode from "jwt-decode";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
