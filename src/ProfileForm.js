@@ -12,8 +12,9 @@ import Alert from "./Alert";
  *
  * RoutesList -> ProfileForm
  */
-function ProfileForm() {
+function ProfileForm({ updateProfile }) {
   const { currentUser } = useContext(userContext);
+
 
   const initialState = {
     username: currentUser.user.username,
@@ -25,9 +26,17 @@ function ProfileForm() {
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState([]);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    //updateProfile()
+
+    try {
+      await updateProfile(formData);
+    }
+    catch (err) {
+      console.log("errors inside profileform", errors)
+      console.log("err object in catch block", err)
+      setErrors(err);
+    }
   }
 
   function handleChange(evt) {
@@ -48,9 +57,8 @@ function ProfileForm() {
           className='form-control form-control-sm'
           id="profile-username"
           name="username"
-          placeholder={formData.username}
+          placeholder={currentUser.user.username}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -63,7 +71,6 @@ function ProfileForm() {
           name="firstName"
           value={formData.firstName}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -76,7 +83,6 @@ function ProfileForm() {
           name="lastName"
           value={formData.lastName}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -89,11 +95,11 @@ function ProfileForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          required
         />
       </div>
 
-      <Alert />
+      {errors.length > 0 &&
+        <Alert errors={errors[0].message} />}
 
       <button
         className="btn btn-primary"

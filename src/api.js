@@ -84,6 +84,16 @@ class JoblyApi {
     let res = await this.request(`users/${username}`);
     return res;
   }
+
+  /** Updates user by sending data as { firstName, lastName, password, email } */
+  static async updateUserProfile(data) {
+    const username = data.username;
+    delete data.username;
+
+    let res = await this.request(`users/${username}`, data, 'PATCH');
+
+    return res;
+  }
 }
 
 export default JoblyApi;

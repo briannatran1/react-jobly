@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode";
 
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = useState({});
   const [loadedData, setLoadedData] = useState(false);
 
@@ -40,7 +40,6 @@ function App() {
         const decoded = jwt_decode(localToken);
         const userData = await JoblyApi.getUserData(decoded.username);
         setCurrentUser(userData);
-        setToken(localToken);
         setLoadedData(true);
       }
       else {
@@ -58,8 +57,9 @@ function App() {
   }
 
   /** updates user profile upon saving */
-  function updateProfile(formData) {
-
+  async function updateProfile(formData) {
+    const updatedUser = await JoblyApi.updateUserProfile(formData);
+    setCurrentUser(updatedUser);
   }
 
   if (loadedData === false) {
@@ -74,7 +74,8 @@ function App() {
             <RoutesList
               login={login}
               signup={signup}
-              currentUser={currentUser} />
+              currentUser={currentUser}
+              updateProfile={updateProfile} />
           </userContext.Provider>
         </BrowserRouter>
       </div>

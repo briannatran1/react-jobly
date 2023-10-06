@@ -12,9 +12,12 @@ import ProfileForm from "./ProfileForm";
  * Props:
  * - login(): update state in parent
  * - signup(): update state in parent
+ * - updateProfile(): update state in parent
+ * - currentUser: {}
  *
-*/
-function RoutesList({ login, signup, currentUser }) {
+ */
+
+function RoutesList({ login, signup, updateProfile, currentUser }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -24,7 +27,7 @@ function RoutesList({ login, signup, currentUser }) {
 
       {Object.keys(currentUser).length !== 0 &&
         <>
-          <Route path="/profile" element={<ProfileForm />} />
+          <Route path="/profile" element={<ProfileForm updateProfile={updateProfile} />} />
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:handle" element={<CompanyDetail />} />
           <Route path="/jobs" element={<JobList />} />
