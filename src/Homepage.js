@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import userContext from './userContext';
 import { Link } from 'react-router-dom';
+import "./Homepage.css"
 
 /** Homepage: Welcome page.
  *
@@ -13,7 +14,7 @@ function Homepage() {
   const { currentUser } = useContext(userContext);
 
   return (
-    <div>
+    <div className="Homepage">
       <h1 className="mt-4">Jobly</h1>
       <p>All the jobs in one, convenient place.</p>
       {!currentUser.user

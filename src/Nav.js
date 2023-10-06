@@ -12,21 +12,21 @@ function Nav({ logout, currentUser = {} }) {
   /** renders if user is not logged in */
   function notLoggedIn() {
     return (
-      <div>
+      <>
         <li className="nav-item">
           <NavLink className="nav-link" to="/login">Login</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/signup">Sign Up</NavLink>
         </li>
-      </div>
+      </>
     );
   }
 
   /** renders if user is logged in */
   function loggedIn() {
     return (
-      <div>
+      <>
         <li className="nav-item">
           <NavLink className="nav-link" to="/companies">Companies</NavLink>
         </li>
@@ -38,14 +38,14 @@ function Nav({ logout, currentUser = {} }) {
         </li>
         <button
           className='btn link-danger text-decoration-none'
-          onClick={logout}>Log Out {currentUser.user.username}</button>
-      </div>
+          onClick={logout}>Log Out</button>
+      </>
     );
   }
 
   return (
     <nav className="Nav navbar navbar-light navbar-expand-lg">
-      <div className="container-fluid">
+      <div className="container">
         <NavLink className="navbar-brand" to="/">Jobly</NavLink>
 
         <ul className="navbar-nav ms-auto">

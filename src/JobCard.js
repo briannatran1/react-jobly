@@ -1,3 +1,5 @@
+import "./JobCard.css"
+
 /** JobCard: Render details about a job.
  *
  * Prop:
@@ -8,8 +10,8 @@
 
 function JobCard({ job }) {
   return (
-    <div className="card w-75 mb-4 mt-4 mx-auto">
-      <h5 className="pt-3">{job.title}</h5>
+    <div className="JobCard card w-75 mb-4 mt-4 mx-auto">
+      <h5 className="JobCard-title pt-3"><b>{job.title}</b></h5>
       <p>Salary: {job.salary}</p>
       <p>Equity: {job.equity}</p>
     </div>

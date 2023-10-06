@@ -3,6 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
 import userContext from './userContext';
+import "./CompanyDetail.css"
 
 
 /** CompanyDetail: renders details about a company
@@ -41,7 +42,7 @@ function CompanyDetail() {
 
         {Object.keys(company).length === 0
           ? <h1>Loading...</h1>
-          : <div className='CompanyDetail'>
+          : <div className='CompanyDetail mt-4'>
             <h4>{company.name}</h4>
             <p>{company.description}</p>
 

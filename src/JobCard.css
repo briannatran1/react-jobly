@@ -1,0 +1,7 @@
+.JobCard-title {
+  color: #f89898;
+}
+
+.JobCard > p {
+  color: grey;
+}

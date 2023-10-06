@@ -120,7 +120,7 @@ function ProfileForm({ updateProfile }) {
         < Alert isSuccess={formMessages.isSuccess} />}
 
       <button
-        className="btn btn-primary"
+        className="btn btn-success"
       >Save Changes</button>
     </form>
   );

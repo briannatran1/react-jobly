@@ -6,3 +6,7 @@
 .stretched-link {
   color: #f89898;
 }
+
+.CompanyCard > p {
+  color: grey;
+}

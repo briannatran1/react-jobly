@@ -40,7 +40,7 @@ function SearchForm({ updateSearch }) {
         >
         </input>
         <button
-          className="btn btn-primary"
+          className="btn btn-success"
         >Submit</button>
       </div>
     </form>
