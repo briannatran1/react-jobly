@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import userContext from "./userContext";
 import Alert from "./Alert";
+import AlertSuccess from "./AlertSuccess";
 
 /** ProfileForm: for editing profile details.
  *
@@ -36,8 +37,6 @@ function ProfileForm({ updateProfile }) {
     }
   }
 
-  console.log('formData', formData);
-
   function handleChange(evt) {
     const { name, value } = evt.target;
     setFormData(curr => ({
@@ -45,8 +44,6 @@ function ProfileForm({ updateProfile }) {
       [name]: value,
     }));
   }
-
-  console.log('currentUser', currentUser);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
