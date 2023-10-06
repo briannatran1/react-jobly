@@ -15,7 +15,6 @@ import ProfileForm from "./ProfileForm";
  *
 */
 function RoutesList({ login, signup, loadedCurrentUser }) {
-  console.log("asdasd",loadedCurrentUser)
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -31,8 +30,7 @@ function RoutesList({ login, signup, loadedCurrentUser }) {
           <Route path="/jobs" element={<JobList />} />
         </>
       }
-
-      {/* <Route path="*" element={<Navigate to="/" />} /> */}
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }

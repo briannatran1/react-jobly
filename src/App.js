@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import RoutesList from './RoutesList';
 import Nav from './Nav';
@@ -11,7 +11,7 @@ import jwt_decode from "jwt-decode";
 function App() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [loadedCurrentUser, setLoadedCurrentUser] = useState(false);
+  const [loadedData, setLoadedData] = useState(false);
 
   /** logs a user in */
   async function login(formData) {
@@ -29,6 +29,7 @@ function App() {
     setToken(token);
   }
 
+
   /** Update currentUser when token updates. */
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
@@ -40,7 +41,10 @@ function App() {
         const decoded = jwt_decode(token);
         const userData = await JoblyApi.getUserData(decoded.username);
         setCurrentUser(userData);
-        setLoadedCurrentUser(true);
+        setLoadedData(true);
+      }
+      else {
+        setLoadedData(true);
       }
     }
     fetchCurrentUser();
@@ -53,17 +57,22 @@ function App() {
     localStorage.removeItem("token");
   }
 
+  if (loadedData === false) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <userContext.Provider value={{ currentUser }}>
-          <Nav logout={logout} currentUser={currentUser} />
+      {loadedData &&
+        <BrowserRouter>
+          <userContext.Provider value={{ currentUser }}>
+            <Nav logout={logout} currentUser={currentUser} />
             <RoutesList
               login={login}
               signup={signup}
-              loadedCurrentUser={loadedCurrentUser}/>
-        </userContext.Provider>
-      </BrowserRouter>
+              loadedData={loadedData} />
+          </userContext.Provider>
+        </BrowserRouter>}
     </div>
   );
 }
