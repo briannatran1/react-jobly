@@ -7,6 +7,8 @@ import JoblyApi from './api';
 import userContext from "./userContext";
 import jwt_decode from "jwt-decode";
 
+// TESTING
+
 /** App. Renders Nav and Routes for Jobly App. */
 function App() {
   const [token, setToken] = useState(null);
@@ -61,15 +63,15 @@ function App() {
   else {
     return (
       <div className="App">
-          <BrowserRouter>
-            <userContext.Provider value={{ currentUser }}>
-              <Nav logout={logout} currentUser={currentUser} />
-              <RoutesList
-                login={login}
-                signup={signup}
-                currentUser={currentUser} />
-            </userContext.Provider>
-          </BrowserRouter>
+        <BrowserRouter>
+          <userContext.Provider value={{ currentUser }}>
+            <Nav logout={logout} currentUser={currentUser} />
+            <RoutesList
+              login={login}
+              signup={signup}
+              currentUser={currentUser} />
+          </userContext.Provider>
+        </BrowserRouter>
       </div>
     );
   }
