@@ -1,9 +1,6 @@
 /**
  * Alert: Display success alert message.
  *
- * Props:
- * - errors: str or []
- *
  * {ProfileForm} -> AlertSuccess
 */
 

@@ -15,29 +15,33 @@ import AlertSuccess from "./AlertSuccess";
  */
 function ProfileForm({ updateProfile }) {
   const { currentUser } = useContext(userContext);
-
   const initialState = {
     username: currentUser.user.username,
     firstName: currentUser.user.firstName,
     lastName: currentUser.user.lastName,
     email: currentUser.user.email,
   };
-
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   async function handleSubmit(evt) {
     evt.preventDefault();
 
     try {
       await updateProfile({ ...formData });
+      setIsSuccess(true);
     }
     catch (err) {
+      setIsSuccess(false);
       setErrors(err);
     }
   }
 
   function handleChange(evt) {
+    setErrors([]);
+    setIsSuccess(false);
+
     const { name, value } = evt.target;
     setFormData(curr => ({
       ...curr,
@@ -98,6 +102,8 @@ function ProfileForm({ updateProfile }) {
 
       {errors.length > 0 &&
         <Alert errors={errors[0].message} />}
+
+      {isSuccess && errors.length === 0 && <AlertSuccess />}
 
       <button
         className="btn btn-primary"
