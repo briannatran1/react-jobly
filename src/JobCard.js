@@ -1,4 +1,4 @@
-import "./JobCard.css"
+import "./JobCard.css";
 
 /** JobCard: Render details about a job.
  *
@@ -14,6 +14,8 @@ function JobCard({ job }) {
       <h5 className="JobCard-title pt-3"><b>{job.title}</b></h5>
       <p>Salary: {job.salary}</p>
       <p>Equity: {job.equity}</p>
+
+      <button className='btn btn-danger w-20 mx-auto mb-4'>Apply</button>
     </div>
   );
 }
