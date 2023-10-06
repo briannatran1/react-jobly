@@ -41,7 +41,7 @@ function CompanyDetail() {
 
         {Object.keys(company).length === 0
           ? <h1>Loading...</h1>
-          : <div>
+          : <div className='CompanyDetail'>
             <h4>{company.name}</h4>
             <p>{company.description}</p>
 

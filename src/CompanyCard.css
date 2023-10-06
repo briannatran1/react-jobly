@@ -1,0 +1,8 @@
+.CompanyCard:hover {
+  box-shadow: 10px 5px 5px #FFE5E5;
+  cursor: pointer;
+}
+
+.stretched-link {
+  color: #f89898;
+}
