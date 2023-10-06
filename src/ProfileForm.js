@@ -15,7 +15,6 @@ import Alert from "./Alert";
 function ProfileForm({ updateProfile }) {
   const { currentUser } = useContext(userContext);
 
-
   const initialState = {
     username: currentUser.user.username,
     firstName: currentUser.user.firstName,
@@ -30,14 +29,14 @@ function ProfileForm({ updateProfile }) {
     evt.preventDefault();
 
     try {
-      await updateProfile(formData);
+      await updateProfile({ ...formData });
     }
     catch (err) {
-      console.log("errors inside profileform", errors)
-      console.log("err object in catch block", err)
       setErrors(err);
     }
   }
+
+  console.log('formData', formData);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -46,6 +45,8 @@ function ProfileForm({ updateProfile }) {
       [name]: value,
     }));
   }
+
+  console.log('currentUser', currentUser);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
