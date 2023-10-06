@@ -24,7 +24,6 @@ function ProfileForm({ updateProfile }) {
   };
   const [formData, setFormData] = useState(initialState);
 
-  //FIXME: can bundle state
   const [formMessages, setFormMessages] = useState({
     errors: [],
     isSuccess: false
@@ -62,8 +61,6 @@ function ProfileForm({ updateProfile }) {
       [name]: value,
     }));
   }
-
-  console.log('currentUser', currentUser);
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
