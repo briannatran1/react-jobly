@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import userContext from "./userContext";
 import Alert from "./Alert";
-import AlertSuccess from "./AlertSuccess";
 
 /** ProfileForm: for editing profile details.
  *
@@ -101,9 +100,10 @@ function ProfileForm({ updateProfile }) {
       </div>
 
       {errors.length > 0 &&
-        <Alert errors={errors[0].message} />}
+        < Alert errors={errors[0].message} isSuccess={isSuccess} />}
 
-      {isSuccess && errors.length === 0 && <AlertSuccess />}
+      {isSuccess &&
+        < Alert isSuccess={isSuccess} />}
 
       <button
         className="btn btn-primary"

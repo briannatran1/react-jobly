@@ -7,16 +7,23 @@
  * {LoginForm, SignupForm, ProfileForm} -> Alert
 */
 
-function Alert({ errors }) {
-
+function Alert({ isSuccess, errors = [] }) {
   return (
-    <div className="alert alert-danger">
-      {Array.isArray(errors)
-        ? errors.map((error, idx) => (
-          <p key={idx}>{error}</p>
-        ))
-        : <p>{errors}</p>
-      }
+    <div>
+      {!isSuccess &&
+        <div className="alert alert-danger">
+          {Array.isArray(errors)
+            ? errors.map((error, idx) => (
+              <p key={idx}>{error}</p>
+            ))
+            : <p>{errors}</p>
+          }
+        </div>}
+
+      {isSuccess &&
+        <div className="alert alert-success">
+          <p>Changes saved.</p>
+        </div>}
     </div>
   );
 }
