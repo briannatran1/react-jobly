@@ -14,6 +14,7 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [currentUser, setCurrentUser] = useState({});
   const [loadedData, setLoadedData] = useState(false);
+  const [applicationIds, setApplicationIds] = useState([]);
 
   /** logs a user in */
   async function login(formData) {
@@ -41,6 +42,7 @@ function App() {
         const decoded = jwt_decode(localToken);
         const userData = await JoblyApi.getUserData(decoded.username);
         setCurrentUser(userData);
+        setApplicationIds(userData.user.applications);
         setLoadedData(true);
       }
       else {
@@ -63,6 +65,12 @@ function App() {
     setCurrentUser(updatedUser);
   }
 
+  async function applyToJob(username, jobId) {
+    const res = await JoblyApi.applyToJob(username, jobId);
+    setApplicationIds(curr => [...curr, res.applied]);
+  }
+
+
   if (loadedData === false) {
     return <p>Loading...</p>;
   }
@@ -70,7 +78,7 @@ function App() {
     return (
       <div className="App">
         <BrowserRouter>
-          <userContext.Provider value={{ currentUser }}>
+          <userContext.Provider value={{ currentUser, applyToJob, applicationIds }}>
             <Nav logout={logout} currentUser={currentUser} />
             <RoutesList
               login={login}

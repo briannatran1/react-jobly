@@ -96,10 +96,9 @@ class JoblyApi {
   }
 
   /** applies to selected job when clicking apply */
-  static async applyToJob(data) {
-    const job = data.id;
-    let res = await this.request(`jobs/${job}`, data);
+  static async applyToJob( username, jobId) {
 
+    let res = await this.request(`users/${username}/jobs/${jobId}`, {}, 'POST');
     return res;
   }
 }
