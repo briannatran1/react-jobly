@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import userContext from "./userContext";
 import Alert from "./Alert";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+
 /** ProfileForm: for editing profile details.
  *
  * State:
