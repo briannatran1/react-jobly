@@ -14,7 +14,7 @@ import ProfileForm from "./ProfileForm";
  * - signup(): update state in parent
  *
 */
-function RoutesList({ login, signup, loadedCurrentUser }) {
+function RoutesList({ login, signup }) {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -22,7 +22,7 @@ function RoutesList({ login, signup, loadedCurrentUser }) {
       <Route path="/login" element={<LoginForm login={login} />} />
       <Route path="/signup" element={<SignupForm signup={signup} />} />
 
-      {loadedCurrentUser &&
+      {localStorage.getItem("token") &&
         <>
           <Route path="/profile" element={<ProfileForm />} />
           <Route path="/companies" element={<CompanyList />} />
@@ -30,6 +30,7 @@ function RoutesList({ login, signup, loadedCurrentUser }) {
           <Route path="/jobs" element={<JobList />} />
         </>
       }
+
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

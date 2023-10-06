@@ -29,7 +29,6 @@ function App() {
     setToken(token);
   }
 
-
   /** Update currentUser when token updates. */
   useEffect(function fetchCurrentUserWhenMounted() {
     async function fetchCurrentUser() {
@@ -42,8 +41,7 @@ function App() {
         const userData = await JoblyApi.getUserData(decoded.username);
         setCurrentUser(userData);
         setLoadedData(true);
-      }
-      else {
+      } else {
         setLoadedData(true);
       }
     }
@@ -60,21 +58,22 @@ function App() {
   if (loadedData === false) {
     return <p>Loading...</p>;
   }
+  else {
+    return (
+      <div className="App">
+          <BrowserRouter>
+            <userContext.Provider value={{ currentUser }}>
+              <Nav logout={logout} currentUser={currentUser} />
+              <RoutesList
+                login={login}
+                signup={signup}
+                currentUser={currentUser} />
+            </userContext.Provider>
+          </BrowserRouter>
+      </div>
+    );
+  }
 
-  return (
-    <div className="App">
-      {loadedData &&
-        <BrowserRouter>
-          <userContext.Provider value={{ currentUser }}>
-            <Nav logout={logout} currentUser={currentUser} />
-            <RoutesList
-              login={login}
-              signup={signup}
-              loadedData={loadedData} />
-          </userContext.Provider>
-        </BrowserRouter>}
-    </div>
-  );
 }
 
 export default App;

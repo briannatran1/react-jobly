@@ -53,7 +53,7 @@ function JobList() {
     );
   }
 
-  return <Navigate to='/' />;
+  // return <Navigate to='/' />;
 }
 
 
