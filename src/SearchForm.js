@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { debounce } from 'lodash';
 
 /** SearchForm: search form for jobs and companies to filter
  *
@@ -25,6 +26,13 @@ function SearchForm({ updateSearch }) {
     const { value } = evt.target;
     setFormData(value);
   }
+
+  /** handles searchTerm change and then submits */
+  // function handleChangeAndSubmit(evt) {
+  //   evt.preventDefault();
+  //   handleChange(evt);
+  //   return debounce(handleSubmit, 1000);
+  // }
 
   return (
     <form onSubmit={handleSubmit} className='w-50 mt-4 mx-auto'>
