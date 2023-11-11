@@ -1,6 +1,6 @@
 APPLICATION LIVE: https://jobly-watermelon.surge.sh
 
-Job application site built using React frontend with a Flask backend. 
+Job application site built using React frontend with an Express backend. 
 
 
 
